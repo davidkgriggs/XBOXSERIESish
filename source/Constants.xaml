@@ -1,0 +1,199 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    mc:Ignorable="d">
+
+    <sys:Boolean x:Key="UseAbsoluteExtraMetadataPath">false</sys:Boolean>
+    <sys:String x:Key="ExtraMetadataPath">..\..\..\..</sys:String>
+    <!--sys:String x:Key="ExtraMetadataPath">C:\Users\david\AppData\Roaming\Playnite</sys:String-->
+
+    <!--Profile Name-->
+    <!--PN--><sys:String x:Key="ProfileName">XBOXSERIESish</sys:String><!--PN-->
+    
+    <!--Intro-->
+    <sys:Boolean x:Key="Intro">false</sys:Boolean>
+
+    <!--IntroTimespan-->
+    <!--IL--><sys:TimeSpan x:Key="IntroTimespan">0:0:03</sys:TimeSpan><!--IL-->
+
+    <!--IntroVideo-->
+    <sys:Boolean x:Key="IntroVideo">false</sys:Boolean>
+
+    <!--IntroVideoVolume-->
+    <!--IVV--><sys:Double x:Key="IntroVideoVolume">0</sys:Double><!--IVV-->
+
+    <!--Banners-->
+    <sys:Boolean x:Key="Banners">false</sys:Boolean>
+
+    <!--VideoCovers-->
+    <sys:Boolean x:Key="VideoCovers">false</sys:Boolean>
+
+    <!--VideoBackgrounds-->
+    <sys:Boolean x:Key="VideoBackgrounds">false</sys:Boolean>
+
+    <!--Trailers-->
+    <sys:Boolean x:Key="Trailers">true</sys:Boolean>
+
+    <!--MainScreenLogo-->
+    <sys:Boolean x:Key="MainScreenLogo">false</sys:Boolean>
+
+    <Color x:Key="BlackColor">#FF000000</Color>
+    <Color x:Key="WhiteColor">#FFFFFFFF</Color>
+    <Color x:Key="GlyphColor">#469F41</Color>
+    <Color x:Key="GlyphLightColor">#469F41</Color>
+    <Color x:Key="SelectionLightColor">#4d4d4d</Color>
+    <Color x:Key="OverlayColor">#BB000000</Color>
+    <Color x:Key="UIColour">#54a81b</Color>
+    <Color x:Key="DarkLightBackground">#1E1E1C</Color>
+    <Color x:Key="SelectedColour">#262724</Color>
+    <Color x:Key="TabsColour">#2F2F2C</Color>
+
+    <Color x:Key="ControlBackgroundColor">#707070</Color>
+    <Color x:Key="ControlBackgroundColorDark">#202020</Color>
+
+    <Color x:Key="TextColor">#FFEBEBEB</Color>
+    <Color x:Key="TextColorDark">#FF757575</Color>
+
+    <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
+    <SolidColorBrush x:Key="TextBrushDark" Color="{DynamicResource TextColorDark}" />
+    <SolidColorBrush x:Key="GlyphBrush" Color="{DynamicResource UIColour}" />
+    <SolidColorBrush x:Key="GlyphLightBrush" Color="{DynamicResource UIColour}" />
+    <SolidColorBrush x:Key="ControlBackgroundBrush" Color="{DynamicResource ControlBackgroundColor}" />
+    <SolidColorBrush x:Key="ControlBackgroundDarkBrush" Color="{DynamicResource SelectedColour}" />
+    <SolidColorBrush x:Key="SelectionLightBrush" Color="{DynamicResource SelectionLightColor}" />
+    <SolidColorBrush x:Key="OverlayBrush" Color="{DynamicResource OverlayColor}" />
+    <SolidColorBrush x:Key="UIBrush" Color="{DynamicResource UIColour}" />
+    <SolidColorBrush x:Key="DarkLightBrush" Color="{DynamicResource DarkLightBackground}" />
+    <SolidColorBrush x:Key="SelectedBrush" Color="{DynamicResource SelectedColour}"/>
+    <SolidColorBrush x:Key="TabsBrush" Color="{DynamicResource TabsColour}"/>
+    <SolidColorBrush x:Key="CheckBoxCheckMarkBkBrush" Color="{DynamicResource ControlBackgroundColorDark}" />
+
+    <SolidColorBrush x:Key="MainBackgourndBrush" Color="{DynamicResource DarkLightBackground}" />
+    <SolidColorBrush x:Key="TopBarBackgroundBrush" Color="{DynamicResource DarkLightBackground}" />
+    <SolidColorBrush x:Key="BottomBarBackgroundBrush" Color="{DynamicResource DarkLightBackground}" />
+
+    <sys:Double x:Key="FontSizeSmall">20</sys:Double>
+    <sys:Double x:Key="FontSize">22</sys:Double>
+
+    <sys:Double x:Key="FilterPanelWidth">300</sys:Double>
+
+    <Style x:Key="TextBlockBaseStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+    </Style>
+
+    <!--RadialGradientBrush x:Key="MainBackgourndBrush" GradientOrigin="0.5,0.1" Center="0.5,0.2" RadiusX="0.5" RadiusY="0.7">
+        <RadialGradientBrush.GradientStops>
+            <GradientStop Color="#FF091F51" Offset="0" />
+            <GradientStop Color="#FF0B1027" Offset="1.0" />
+        </RadialGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="TopBarBackgroundBrush" StartPoint="-0.5,0.5" EndPoint="1,0.5" >
+        <GradientStop Color="#FF091F51" Offset="0"/>
+        <GradientStop Color="#AA0B1027" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="BottomBarBackgroundBrush" StartPoint="-0.5,0.5" EndPoint="1.5,1" >
+        <GradientStop Color="#FF091F51" Offset="0"/>
+        <GradientStop Color="#AA0B1027" Offset="1.0"/>
+    </LinearGradientBrush-->
+
+    <LinearGradientBrush x:Key="OverlayMenuBackgroundBrush" StartPoint="0.5,0" EndPoint="0.5,1" >
+        <GradientStop Color="#404040" Offset="0"/>
+        <GradientStop Color="#303030" Offset="0.5"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="SelectionBrush" StartPoint="0.5,-0.5" EndPoint="1,1.5" >
+        <GradientStop Color="{DynamicResource UIColour}" Offset="0"/>
+        <GradientStop Color="{DynamicResource UIColour}" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GameDetailsBackgroundBrush" StartPoint="0.5,0" EndPoint="0.5,0.4" >
+        <GradientStop Color="#33000000" Offset="0.0"/>
+        <GradientStop Color="#99000000" Offset="0.8"/>
+    </LinearGradientBrush>
+
+    <RadialGradientBrush x:Key="OverlayDynamicBackground" >
+        <GradientStop Color="#33000000" Offset="0"/>
+        <GradientStop Color="#89000000" Offset="1"/>
+    </RadialGradientBrush>
+
+
+    <!--CornerRadiusLarge-->
+    <Style x:Key="CornerRadiusLarge" TargetType="Border">
+        <Setter Property="CornerRadius" Value="5"/>
+    </Style>
+    <!--CornerRadiusSmall-->
+    <Style x:Key="CornerRadiusSmall" TargetType="Border">
+        <Setter Property="CornerRadius" Value="5"/>
+    </Style>
+
+    <!--VideoCovers-->
+    <Style x:Key="VideoCover" TargetType="Grid">
+        <Setter Property="Visibility" Value="Visible"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="false">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Trailers-->
+    <Style x:Key="TrailersStyle" TargetType="StackPanel">
+        <Setter Property="Visibility" Value="Visible"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="false">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Bottom Text-->
+    <Style x:Key="BottomText" TargetType="Grid">
+        <Setter Property="Control.Margin" Value="0,0,0,0"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=PART_ListGameItems, Path=Height}" Value="860">
+                <Setter Property="ItemsControl.Margin" Value="0,100,0,0"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true">
+                <Setter Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="false">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Right Info-->
+    <Style x:Key="RightInfo" TargetType="StackPanel">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true">
+                <Setter Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="false">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Progress Label-->
+    <Style x:Key="ProgressLabel" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="32" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <!--PL--><Setter Property="Text" Value="{DynamicResource LOCSuccessStoryProgress}" /><!--PL-->
+    </Style>
+
+    <!--Earned Label-->
+    <Style x:Key="EarnedLabel" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="32" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <!--EL--><Setter Property="Text" Value="{DynamicResource LOCSuccessStoryEarned}" /><!--EL-->
+    </Style>
+</ResourceDictionary>

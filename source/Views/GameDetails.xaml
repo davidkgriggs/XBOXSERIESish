@@ -17,7 +17,7 @@
                           KeyboardNavigation.TabNavigation="Contained">                        
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="75" />
-                            <ColumnDefinition Width="350" />
+                            <ColumnDefinition Width="400" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="500" />
                             <ColumnDefinition Width="75" />
@@ -118,7 +118,7 @@
                         </Grid>
 
                         <Grid Grid.Row="2" Grid.Column="1">
-                            <Grid Margin="20,0,0,20" Width="300" HorizontalAlignment="Left">
+                            <Grid Margin="20,0,0,20" Width="380" HorizontalAlignment="Left">
                                 <StackPanel Orientation="Vertical" Margin="0,20,0,0">
                                     <TextBlock HorizontalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"
                                        Text="{DynamicResource LOCGameDetails}" Foreground="#FFEBEBEB" FontSize="48" Margin="0,0,0,20">
@@ -246,15 +246,15 @@
                                         <TextBlock Text="{DynamicResource LOCHowLongToBeatTitle}" Style="{DynamicResource TextBlockBaseStyle}" Foreground="#FFEBEBEB" FontSize="36" Margin="0,0,0,10" HorizontalAlignment="Center"/>
                                         <Grid VerticalAlignment="Top" Width="500">
                                             <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
-                                                <ContentControl Width="150" Content="{DynamicResource LOCHowLongToBeatMainStory}"
+                                                <ContentControl Width="250" Content="{DynamicResource LOCHowLongToBeatMainStory}"
                                                                         ContentStringFormat="{}{0}:" Focusable="False"
                                                                         Foreground="#FFA6A69E"
                                                                         FontSize="20" Margin="0,0,0,8"/>
-                                                <ContentControl Width="150" Content="{DynamicResource LOCHowLongToBeatMainExtra}"
+                                                <ContentControl Width="250" Content="{DynamicResource LOCHowLongToBeatMainExtra}"
                                                                         ContentStringFormat="{}{0}:" Focusable="False"
                                                                         Foreground="#FFA6A69E"
                                                                         FontSize="20" Margin="0,0,0,8"/>
-                                                <ContentControl Width="150" Content="{DynamicResource LOCHowLongToBeatCompletionist}"
+                                                <ContentControl Width="250" Content="{DynamicResource LOCHowLongToBeatCompletionist}"
                                                                         ContentStringFormat="{}{0}:" Focusable="False"
                                                                         Foreground="#FFA6A69E"
                                                                         FontSize="20" Margin="0,0,0,8"/>                                                

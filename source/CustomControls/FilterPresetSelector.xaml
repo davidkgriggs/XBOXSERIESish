@@ -6,6 +6,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="CheckBoxEx">
@@ -21,6 +22,14 @@
                         </TextBlock>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="ListBox.AlternationIndex" Value="0">
+                            <Setter Property="Focusable" Value="True"/>
+                        </Trigger>
+
+                        <DataTrigger Binding="{Binding ElementName=FilterPresets, Path=IsKeyboardFocusWithin}" Value="True">
+                            <Setter Property="Focusable" Value="True"/>
+                        </DataTrigger>
+                        
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="FontWeight" Value="SemiBold" TargetName="TextContent" />
                             <Setter Property="Visibility" Value="Visible" TargetName="BorderFocus"/>
@@ -45,7 +54,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type FilterPresetSelector}">
-                    <ItemsControlEx x:Name="PART_ItemsFilterPresets" Focusable="False"
+                    <ItemsControlEx x:Name="PART_ItemsFilterPresets" Focusable="False" AlternationCount="{Binding Items.Count, RelativeSource={RelativeSource Self}}"
                                     KeyboardNavigation.DirectionalNavigation="Once"
                                     HorizontalLayout="False">
                         <ItemsControl.ItemsPanel>                            

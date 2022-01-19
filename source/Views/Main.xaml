@@ -12,7 +12,1017 @@
                           d:DesignWidth="{StaticResource DesignWidth}"
                           d:DesignHeight="{StaticResource DesignHeight}"
                           d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
-                        <Grid x:Name="PART_ViewHost" Background="{DynamicResource MainBackgourndBrush}">
+                        <Grid HorizontalAlignment="Stretch" Height="{StaticResource DesignHeight}" Background="{DynamicResource DarkLightBrush}"/>
+                        <Grid x:Name="DynamicBackgrounds" Tag="{DynamicResource DynamicBackground}" VerticalAlignment="Bottom">
+                            <Grid.Style>
+                                <Style>
+                                    <Setter Property="ItemsControl.Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true">
+                                            <Setter Property="ItemsControl.Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Settings Fullscreen.EnableMainBackgroundImage}" Value="true">
+                                            <Setter Property="ItemsControl.Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <Grid HorizontalAlignment="Stretch" Height="{StaticResource DesignHeight}" Background="{DynamicResource UIBrush}"/>
+
+                            <Grid x:Name="DynamicBackground_Columns" Tag="{DynamicResource DynamicBackground_Columns}">
+                                <Grid.Style>
+                                    <Style>
+                                        <Setter Property="ItemsControl.Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true">
+                                                <Setter Property="ItemsControl.Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                                <Viewbox Stretch="Fill" VerticalAlignment="Bottom">
+                                    <Grid Width="1000" Height="450" VerticalAlignment="Bottom" Tag="{DynamicResource DynamicBackground_Columns}">
+                                        <Grid x:Name="One" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="0,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,450,0,0" To="0,50,0,0" BeginTime="0:0:0" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,50,0,0" To="0,450,0,0" BeginTime="0:0:2" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:0" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:2" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,450,0,0" To="0,450,0,0" BeginTime="0:0:4" Duration="0:0:9"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:4" Duration="0:0:9"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Two" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="100,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="100,450,0,0" To="100,50,0,0" BeginTime="0:0:1" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="100,50,0,0" To="100,450,0,0" BeginTime="0:0:3" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:1" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:3" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="100,450,0,0" To="100,450,0,0" BeginTime="0:0:5" Duration="0:0:8"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:5" Duration="0:0:8"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Three" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="200,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="200,450,0,0" To="200,50,0,0" BeginTime="0:0:2" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="200,50,0,0" To="200,450,0,0" BeginTime="0:0:4" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:2" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:4" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="200,450,0,0" To="200,450,0,0" BeginTime="0:0:6" Duration="0:0:7"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:6" Duration="0:0:7"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Four" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="300,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="300,450,0,0" To="300,50,0,0" BeginTime="0:0:3" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="300,50,0,0" To="300,450,0,0" BeginTime="0:0:5" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:3" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:5" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="300,450,0,0" To="300,450,0,0" BeginTime="0:0:7" Duration="0:0:6"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:7" Duration="0:0:6"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Five" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="400,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="400,450,0,0" To="400,50,0,0" BeginTime="0:0:4" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="400,50,0,0" To="400,450,0,0" BeginTime="0:0:6" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:4" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:6" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="400,450,0,0" To="400,450,0,0" BeginTime="0:0:8" Duration="0:0:5"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:8" Duration="0:0:5"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Six" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="500,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="500,450,0,0" To="500,50,0,0" BeginTime="0:0:5" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="500,50,0,0" To="500,450,0,0" BeginTime="0:0:7" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:5" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:7" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="500,550,0,0" To="500,450,0,0" BeginTime="0:0:9" Duration="0:0:4"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:9" Duration="0:0:4"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Seven" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="600,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="600,450,0,0" To="600,50,0,0" BeginTime="0:0:6" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="600,50,0,0" To="600,450,0,0" BeginTime="0:0:8" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:6" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:8" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="600,450,0,0" To="600,450,0,0" BeginTime="0:0:10" Duration="0:0:3"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:10" Duration="0:0:3"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Eight" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="700,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="700,450,0,0" To="700,50,0,0" BeginTime="0:0:7" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="700,50,0,0" To="700,450,0,0" BeginTime="0:0:9" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:7" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:9" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="700,450,0,0" To="700,450,0,0" BeginTime="0:0:11" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:11" Duration="0:0:2"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Nine" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="800,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="800,450,0,0" To="800,50,0,0" BeginTime="0:0:8" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="800,50,0,0" To="800,450,0,0" BeginTime="0:0:10" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:8" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:10" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="800,450,0,0" To="800,450,0,0" BeginTime="0:0:12" Duration="0:0:1"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:12" Duration="0:0:1"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Ten" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="900,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="900,450,0,0" To="900,50,0,0" BeginTime="0:0:9" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="900,50,0,0" To="900,450,0,0" BeginTime="0:0:11" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:9" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:11" Duration="0:0:2"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                    </Grid>
+                                </Viewbox>
+
+                                <Viewbox Stretch="Fill" VerticalAlignment="Bottom">
+                                    <Grid Width="1000" Height="450" VerticalAlignment="Bottom" Tag="{DynamicResource DynamicBackground_Columns}">
+                                        <Grid x:Name="Eleven" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="0,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" BeginTime="0:0:6.5" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,450,0,0" To="0,50,0,0" BeginTime="0:0:0" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,50,0,0" To="0,450,0,0" BeginTime="0:0:2" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:0" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:2" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,450,0,0" To="0,450,0,0" BeginTime="0:0:4" Duration="0:0:9"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:4" Duration="0:0:9"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Twelve" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="100,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" BeginTime="0:0:6.5" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="100,450,0,0" To="100,50,0,0" BeginTime="0:0:1" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="100,50,0,0" To="100,450,0,0" BeginTime="0:0:3" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:1" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:3" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="100,450,0,0" To="100,450,0,0" BeginTime="0:0:5" Duration="0:0:8"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:5" Duration="0:0:8"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Thirteen" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="200,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" BeginTime="0:0:6.5" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="200,450,0,0" To="200,50,0,0" BeginTime="0:0:2" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="200,50,0,0" To="200,450,0,0" BeginTime="0:0:4" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:2" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:4" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="200,450,0,0" To="200,450,0,0" BeginTime="0:0:6" Duration="0:0:7"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:6" Duration="0:0:7"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Fourteen" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="300,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" BeginTime="0:0:6.5" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="300,450,0,0" To="300,50,0,0" BeginTime="0:0:3" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="300,50,0,0" To="300,450,0,0" BeginTime="0:0:5" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:3" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:5" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="300,450,0,0" To="300,450,0,0" BeginTime="0:0:7" Duration="0:0:6"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:7" Duration="0:0:6"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Fifteen" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="400,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" BeginTime="0:0:6.5" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="400,450,0,0" To="400,50,0,0" BeginTime="0:0:4" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="400,50,0,0" To="400,450,0,0" BeginTime="0:0:6" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:4" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:6" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="400,450,0,0" To="400,450,0,0" BeginTime="0:0:8" Duration="0:0:5"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:8" Duration="0:0:5"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Sixteen" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="500,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" BeginTime="0:0:6.5" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="500,450,0,0" To="500,50,0,0" BeginTime="0:0:5" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="500,50,0,0" To="500,450,0,0" BeginTime="0:0:7" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:5" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:7" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="500,550,0,0" To="500,450,0,0" BeginTime="0:0:9" Duration="0:0:4"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:9" Duration="0:0:4"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Seventeen" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="600,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" BeginTime="0:0:6.5" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="600,450,0,0" To="600,50,0,0" BeginTime="0:0:6" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="600,50,0,0" To="600,450,0,0" BeginTime="0:0:8" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:6" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:8" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="600,450,0,0" To="600,450,0,0" BeginTime="0:0:10" Duration="0:0:3"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:10" Duration="0:0:3"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Eighteen" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="700,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" BeginTime="0:0:6.5" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="700,450,0,0" To="700,50,0,0" BeginTime="0:0:7" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="700,50,0,0" To="700,450,0,0" BeginTime="0:0:9" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:7" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:9" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="700,450,0,0" To="700,450,0,0" BeginTime="0:0:11" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:11" Duration="0:0:2"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Nineteen" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="800,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" BeginTime="0:0:6.5" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="800,450,0,0" To="800,50,0,0" BeginTime="0:0:8" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="800,50,0,0" To="800,450,0,0" BeginTime="0:0:10" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:8" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:10" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="800,450,0,0" To="800,450,0,0" BeginTime="0:0:12" Duration="0:0:1"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0" BeginTime="0:0:12" Duration="0:0:1"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                        <Grid x:Name="Twenty" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="400" Margin="900,450,0,0" Tag="{DynamicResource DynamicBackground_Columns}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="Anim" BeginTime="0:0:6.5" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="900,450,0,0" To="900,50,0,0" BeginTime="0:0:9" Duration="0:0:2"/>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="900,50,0,0" To="900,450,0,0" BeginTime="0:0:11" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:9" Duration="0:0:2"/>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:11" Duration="0:0:2"/>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Border Background="{DynamicResource UIBrush}" />
+                                            <Border Background="{DynamicResource GameDetailsBackgroundBrush}" />
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Columns, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="BeginAnim"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="BeginAnim" Storyboard="{StaticResource Anim}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                    </Grid>
+                                </Viewbox>
+                            </Grid>
+
+                            <Viewbox Stretch="Fill">
+                                <Grid x:Name="DynamicBackground_Wave" Width="1920" Height="1080" Tag="{DynamicResource DynamicBackground_Wave}">
+                                    <Grid.Style>
+                                        <Style>
+                                            <Setter Property="ItemsControl.Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true">
+                                                    <Setter Property="ItemsControl.Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
+                                    <Grid x:Name="DynamicBackground_Wave_Wave" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" Tag="{DynamicResource DynamicBackground_Wave}">
+                                        <Grid.Resources>
+                                            <Storyboard x:Key="WaveBackground" RepeatBehavior="Forever">
+                                                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="-3800,0,0,0" BeginTime="0:0:0" Duration="0:0:15" FillBehavior="Stop"/>
+                                            </Storyboard>
+                                        </Grid.Resources>
+                                        <Grid.Style>
+                                            <Style>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                        <DataTrigger.EnterActions>
+                                                            <PauseStoryboard BeginStoryboardName="Wave"/>
+                                                        </DataTrigger.EnterActions>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                        <DataTrigger.EnterActions>
+                                                            <PauseStoryboard BeginStoryboardName="Wave"/>
+                                                        </DataTrigger.EnterActions>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Wave, Path=Visibility}" Value="Collapsed">
+                                                        <DataTrigger.EnterActions>
+                                                            <PauseStoryboard BeginStoryboardName="Wave"/>
+                                                        </DataTrigger.EnterActions>
+                                                    </DataTrigger>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <MultiDataTrigger.EnterActions>
+                                                            <BeginStoryboard x:Name="Wave" Storyboard="{StaticResource WaveBackground}"/>
+                                                        </MultiDataTrigger.EnterActions>
+                                                    </MultiDataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Grid.Style>
+                                        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Tag="{DynamicResource DynamicBackground_Wave}">
+                                            <Grid.Resources>
+                                                <Storyboard x:Key="WaveBackgroundUpDown" AutoReverse="True" RepeatBehavior="Forever">
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,0,0,-25" BeginTime="0:0:0" Duration="0:0:1.5">
+                                                        <ThicknessAnimation.EasingFunction>
+                                                            <SineEase EasingMode="EaseInOut"/>
+                                                        </ThicknessAnimation.EasingFunction>
+                                                    </ThicknessAnimation>
+                                                </Storyboard>
+                                            </Grid.Resources>
+                                            <Grid.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="WaveUpDown"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="WaveUpDown"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=DynamicBackgrounds_Wave, Path=Visibility}" Value="Collapsed">
+                                                            <DataTrigger.EnterActions>
+                                                                <PauseStoryboard BeginStoryboardName="WaveUpDown"/>
+                                                            </DataTrigger.EnterActions>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.EnterActions>
+                                                                <BeginStoryboard x:Name="WaveUpDown" Storyboard="{StaticResource WaveBackgroundUpDown}"/>
+                                                            </MultiDataTrigger.EnterActions>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                            <Image Stretch="UniformToFill" Source="../Images/WAVE.png" Width="5760" Height="1080" RenderOptions.BitmapScalingMode="LowQuality"/>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </Viewbox>
+                        </Grid>
+
+                        <Grid x:Name="PART_ViewHost" Background="Transparent">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
@@ -66,6 +1076,15 @@
 
                             <Grid Grid.Row="0" Background="Transparent"
                                   Height="100">
+                                <Grid.Style>
+                                    <Style TargetType="Grid">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=ZoomButton, Path=IsChecked}" Value="True">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="115" />
                                     <ColumnDefinition Width="Auto" />
@@ -218,6 +1237,15 @@
                                     <RowDefinition Height="40"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
+                                <Grid.Style>
+                                    <Style TargetType="Grid">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=ZoomButton, Path=IsChecked}" Value="True">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
                                 <!--Show/Hide Grid Info-->
                                 <Grid Grid.Row="0" Grid.Column="2" >
                                     <Grid.Style>
@@ -560,7 +1588,7 @@
                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                                         <StackPanel.Style>
                                             <Style TargetType="StackPanel">
-                                                <Setter Property="Margin" Value="0,0,0,0"/>
+                                                <Setter Property="Margin" Value="0,25,0,0"/>
                                                 <Setter Property="Focusable" Value="False"/>
                                                 <Setter Property="Visibility" Value="Visible"/>
                                                 <Style.Triggers>
@@ -578,10 +1606,10 @@
 
 
 
-                                <StackPanel x:Name="InfoAndSuccessStory" Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Focusable="False" Margin="10,0,0,0">
+                                <StackPanel x:Name="InfoAndSuccessStory" Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Focusable="False">
                                     <StackPanel.Style>
                                         <Style>
-                                            <Setter Property="Control.Margin" Value="0,0,0,0"/>
+                                            <Setter Property="Control.Margin" Value="10,25,0,0"/>
                                             <Setter Property="Control.Focusable" Value="False"/>
                                             <Setter Property="Control.Visibility" Value="Visible"/>
                                             <Style.Triggers>
@@ -602,83 +1630,16 @@
                                                 </Style.Triggers>
                                             </Style>
                                         </Grid.Style>
-                                        <Grid Tag="{DynamicResource UseAbsoluteExtraMetadataPath}">
+                                        <Grid Tag="{DynamicResource UseAbsoluteExtraMetadataPath}" Width="416" Height="225">
                                             <Grid.Style>
-                                                <Style>
+                                                <Style TargetType="Grid">
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="false">
-                                                            <Setter Property="ItemsControl.Visibility" Value="Collapsed"/>
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
                                             </Grid.Style>
-                                            <CheckBoxEx x:Name="Trailer" Margin="0,0,10,0">
-                                                <ToggleButton.Style>
-                                                    <Style TargetType="ToggleButton">
-                                                        <Setter Property="Background" Value="Transparent" />
-                                                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                                                        <Setter Property="SnapsToDevicePixels" Value="True" />
-                                                        <Setter Property="VerticalAlignment" Value="Center" />
-                                                        <Setter Property="Focusable" Value="False"/>
-                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                        <Setter Property="Height" Value="215"/>
-                                                        <Setter Property="MinHeight" Value="227"/>
-                                                        <Setter Property="Width" Value="410"/>
-                                                        <Setter Property="MinWidth" Value="418"/>
-                                                        <Setter Property="Template">
-                                                            <Setter.Value>
-                                                                <ControlTemplate TargetType="ToggleButton">
-                                                                    <Grid Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Height="{TemplateBinding MinHeight}" Width="{TemplateBinding MinWidth}">
-                                                                        <Border x:Name="mask" Visibility="Visible" Background="{DynamicResource OverlayMenuBackgroundBrush}" CornerRadius="5" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-                                                                        <Grid HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,12">
-                                                                            <Grid.OpacityMask>
-                                                                                <VisualBrush Visual="{Binding ElementName=mask}" RenderOptions.BitmapScalingMode="Fant"/>
-                                                                            </Grid.OpacityMask>
-                                                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                                                <Grid Background="Black" Width="410" Height="215">
-                                                                                    <TextBlock Name="VideoPath" Tag="{DynamicResource ExtraMetadataPath}" Visibility="Collapsed">
-                                                                                        <TextBlock.Style>
-                                                                                            <Style TargetType="TextBlock">
-                                                                                                <Setter Property="Text">
-                                                                                                    <Setter.Value>
-                                                                                                        <MultiBinding StringFormat="{}{0}{1}{2}{3}">
-                                                                                                            <Binding RelativeSource="{RelativeSource Self}" Path="Tag" />
-                                                                                                            <Binding Source="\ExtraMetadata\games\"/>
-                                                                                                            <Binding Path="SelectedGame.Id"/>
-                                                                                                            <Binding Source="\VideoTrailer.mp4" />
-                                                                                                        </MultiBinding>
-                                                                                                    </Setter.Value>
-                                                                                                </Setter>
-                                                                                            </Style>
-                                                                                        </TextBlock.Style>
-                                                                                    </TextBlock>
-                                                                                    <MediaElement MediaElementBehaviors.Repeat="True" Name="VideoSource" Tag="{DynamicResource UseAbsoluteExtraMetadataPath}" Stretch="Fill">
-                                                                                        <MediaElement.Style>
-                                                                                            <Style TargetType="MediaElement">
-                                                                                                <Setter Property="Volume" Value="0"/>
-                                                                                                <Setter Property="MediaElement.Source" Value="{Binding ElementName=VideoPath, Path=Text}"/>
-                                                                                                <Style.Triggers>
-                                                                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
-                                                                                                        <Setter Property="MediaElement.Source" Value="" />
-                                                                                                    </DataTrigger>
-                                                                                                    <DataTrigger Binding="{Binding ElementName=Trailer,Path=Visibility}" Value="Collapsed">
-                                                                                                        <Setter Property="MediaElement.Source" Value="" />
-                                                                                                    </DataTrigger>
-                                                                                                </Style.Triggers>
-                                                                                            </Style>
-                                                                                        </MediaElement.Style>
-                                                                                    </MediaElement>
-                                                                                </Grid>
-                                                                            </StackPanel>
-                                                                        </Grid>
-                                                                    </Grid>
-                                                                </ControlTemplate>
-                                                            </Setter.Value>
-                                                        </Setter>
-                                                    </Style>
-                                                </ToggleButton.Style>
-                                            </CheckBoxEx>
                                         </Grid>
                                     </Grid>
 
@@ -703,7 +1664,7 @@
                                                         <Setter Property="VerticalAlignment" Value="Center" />
                                                         <Setter Property="Focusable" Value="False"/>
                                                         <Setter Property="Visibility" Value="Visible"/>
-                                                        <Setter Property="Height" Value="215"/>
+                                                        <Setter Property="Height" Value="225"/>
                                                         <Setter Property="MinHeight" Value="227"/>
                                                         <Setter Property="Width" Value="410"/>
                                                         <Setter Property="MinWidth" Value="418"/>
@@ -797,7 +1758,7 @@
                                                         <Setter Property="VerticalAlignment" Value="Center" />
                                                         <Setter Property="Focusable" Value="False"/>
                                                         <Setter Property="Visibility" Value="Visible"/>
-                                                        <Setter Property="Height" Value="215"/>
+                                                        <Setter Property="Height" Value="225"/>
                                                         <Setter Property="MinHeight" Value="227"/>
                                                         <Setter Property="Width" Value="410"/>
                                                         <Setter Property="MinWidth" Value="418"/>
@@ -884,7 +1845,7 @@
 
 
 
-                                <Grid Grid.Row="2" Grid.Column="1" >
+                                <Grid Grid.Row="2" Grid.Column="1" x:Name="FilterPresets">
                                     <Grid.Style>
                                         <Style TargetType="Grid">
                                             <Setter Property="Margin" Value="0,250,0,10"/>
@@ -1019,6 +1980,166 @@
                                             DockPanel.Dock="Left" Focusable="False" />
                             </DockPanel>
 
+                            <Grid x:Name="TrailerMain" Tag="{DynamicResource Trailers}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="12" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Grid.Style>
+                                    <Style TargetType="Grid">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=MoreGames, Path=IsChecked}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="false">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                                <Grid Tag="{DynamicResource UseAbsoluteExtraMetadataPath}">
+                                    <Grid.RenderTransform>
+                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                    </Grid.RenderTransform>
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
+                                            <Setter Property="Margin" Value="550,710,0,0"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="false">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ElementName=ZoomButton, Path=IsChecked}" Value="True">
+                                                    <DataTrigger.EnterActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" From="1" To="4.8" Duration="0:0:0.2"/>
+                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" From="1" To="4.8" Duration="0:0:0.2"/>
+                                                                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="550,710,0,0" To="-14.4,-14.4,0,0" Duration="0:0:0.2"/>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </DataTrigger.EnterActions>
+                                                    <DataTrigger.ExitActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" From="4.8" To="1" Duration="0:0:0.2"/>
+                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" From="4.8" To="1" Duration="0:0:0.2"/>
+                                                                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="550,710,0,0" Duration="0:0:0.2"/>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </DataTrigger.ExitActions>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
+                                    <Border Background="Black" Width="406" Height="231" Margin="0" BorderThickness="3" CornerRadius="5">
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                                <Style.Triggers>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding ElementName=ZoomButton, Path=IsChecked}" Value="False"/>
+                                                            <Condition Binding="{Binding ElementName=TrailerMain,Path=IsKeyboardFocusWithin}" Value="True"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <Setter Property="BorderBrush" Value="{DynamicResource UIBrush}"/>
+                                                    </MultiDataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+                                        <Grid>
+                                            <TextBlock Name="VideoPath" Tag="{DynamicResource ExtraMetadataPath}" Visibility="Collapsed">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Text">
+                                                            <Setter.Value>
+                                                                <MultiBinding StringFormat="{}{0}{1}{2}{3}">
+                                                                    <Binding RelativeSource="{RelativeSource Self}" Path="Tag" />
+                                                                    <Binding Source="\ExtraMetadata\games\"/>
+                                                                    <Binding Path="SelectedGame.Id"/>
+                                                                    <Binding Source="\VideoTrailer.mp4" />
+                                                                </MultiBinding>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                            <MediaElement MediaElementBehaviors.Repeat="True" Name="VideoSource" Tag="{DynamicResource UseAbsoluteExtraMetadataPath}" Stretch="Fill">
+                                                <MediaElement.Style>
+                                                    <Style TargetType="MediaElement">
+                                                        <Setter Property="Volume" Value="0"/>
+                                                        <Setter Property="MediaElement.Source" Value="{Binding ElementName=VideoPath, Path=Text}"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                                <Setter Property="MediaElement.Source" Value="" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding ElementName=TrailerMain,Path=Visibility}" Value="Collapsed">
+                                                                <Setter Property="MediaElement.Source" Value="" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding ElementName=MuteButton,Path=IsChecked}" Value="True">
+                                                                <DataTrigger.EnterActions>
+                                                                    <BeginStoryboard>
+                                                                        <Storyboard>
+                                                                            <DoubleAnimation Storyboard.TargetProperty="Volume" From="0" To="0.5" Duration="0:0:0.2"/>
+                                                                        </Storyboard>
+                                                                    </BeginStoryboard>
+                                                                </DataTrigger.EnterActions>
+                                                                <DataTrigger.ExitActions>
+                                                                    <BeginStoryboard>
+                                                                        <Storyboard>
+                                                                            <DoubleAnimation Storyboard.TargetProperty="Volume" From="0.5" To="0" Duration="0:0:0.2"/>
+                                                                        </Storyboard>
+                                                                    </BeginStoryboard>
+                                                                </DataTrigger.ExitActions>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding ElementName=StopPlayButton,Path=IsChecked}" Value="True">
+                                                                <Setter Property="MediaElement.Source" Value="Stop" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </MediaElement.Style>
+                                            </MediaElement>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Tag="{DynamicResource UseAbsoluteExtraMetadataPath}">
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Setter Property="Margin" Value="553,863,0,0"/>
+                                            <Setter Property="Opacity" Value="0"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="false">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ElementName=TrailerMain,Path=IsKeyboardFocusWithin}" Value="True">
+                                                    <Setter Property="Opacity" Value="1"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ElementName=ZoomButton, Path=IsChecked}" Value="True">
+                                                    <DataTrigger.EnterActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="553,863,0,0" To="0,0,0,0" Duration="0:0:0.2"/>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </DataTrigger.EnterActions>
+                                                    <DataTrigger.ExitActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="553,863,0,0" Duration="0:0:0.2"/>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </DataTrigger.ExitActions>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                    <StackPanel Margin="0,0,10,0">
+                                        <CheckBoxEx x:Name="StopPlayButton" Style="{DynamicResource StopPlayButtonMain}"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="0,0,10,0">
+                                        <CheckBoxEx x:Name="MuteButton" Style="{DynamicResource MuteButton}"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="0,0,10,0">
+                                        <CheckBoxEx x:Name="ZoomButton" Style="{DynamicResource ZoomButton}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+
                             <!--XBOX_Warnings-->
                             <Grid Grid.Row="1">
                                 <StackPanel Margin="0,150,0,0" HorizontalAlignment="Center" 
@@ -1087,6 +2208,160 @@
 
                         <GameStatus x:Name="PART_ElemGameStatus" Grid.RowSpan="3"
                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+                        <!--AnimatedIntro-->
+                        <Grid x:Name="AnimatedIntro" Tag="{DynamicResource Intro}">
+                            <Grid.Style>
+                                <Style>
+                                    <Setter Property="ItemsControl.Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true">
+                                            <Setter Property="ItemsControl.Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=AnimIntroCanvas1, Path=Opacity}" Value="0">
+                                            <Setter Property="ItemsControl.Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <Viewbox Stretch="Fill">
+                                <Canvas x:Name="AnimIntroCanvas1" Width="1920" Height="1080" Opacity="0">
+                                    <Canvas.Resources>
+                                        <Storyboard x:Key="Wave" RepeatBehavior="3" FillBehavior="Stop">
+                                            <ThicknessAnimation Storyboard.TargetName="AnimIntroWave" Storyboard.TargetProperty="Margin" From="0,0,0,0" To="-3800,0,0,0" BeginTime="0:0:0" Duration="0:0:20"/>
+                                        </Storyboard>
+                                        <Storyboard x:Key="Logo">
+                                            <DoubleAnimation Storyboard.TargetName="AnimIntroCanvas1" Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:0" Duration="0:0:0.1"/>
+                                            <DoubleAnimation Storyboard.TargetName="AnimIntroLogo" Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:1" Duration="0:0:2"/>
+                                            <DoubleAnimation Storyboard.TargetName="AnimIntroCanvas1" Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="{DynamicResource IntroTimespan}" Duration="0:0:1"/>
+                                            <DoubleAnimation Storyboard.TargetName="AnimIntroCanvas1" Storyboard.TargetProperty="MaxHeight" From="2160" To="2161" BeginTime="{DynamicResource IntroTimespan}" Duration="0:0:0.01"/>
+                                        </Storyboard>
+                                        <Storyboard x:Key="Border1" RepeatBehavior="30" BeginTime="0:0:1" FillBehavior="Stop">
+                                            <DoubleAnimation Storyboard.TargetName="AnimIntroBorder1" Storyboard.TargetProperty="Width" From="128" To="400" Duration="0:0:1.5"/>
+                                            <DoubleAnimation Storyboard.TargetName="AnimIntroBorder1" Storyboard.TargetProperty="Height" From="128" To="400" Duration="0:0:1.5"/>
+                                            <DoubleAnimation Storyboard.TargetName="AnimIntroBorder1" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1.5"/>
+                                            <DoubleAnimation Storyboard.TargetName="AnimIntroBorder1" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:1.5"/>
+                                        </Storyboard>
+                                        <Storyboard x:Key="Border2" RepeatBehavior="30" BeginTime="0:0:1.5" FillBehavior="Stop">
+                                            <DoubleAnimation Storyboard.TargetName="AnimIntroBorder2" Storyboard.TargetProperty="Width" From="128" To="400" Duration="0:0:1.5"/>
+                                            <DoubleAnimation Storyboard.TargetName="AnimIntroBorder2" Storyboard.TargetProperty="Height" From="128" To="400" Duration="0:0:1.5"/>
+                                            <DoubleAnimation Storyboard.TargetName="AnimIntroBorder2" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1.5"/>
+                                            <DoubleAnimation Storyboard.TargetName="AnimIntroBorder2" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:1.5"/>
+                                        </Storyboard>
+                                        <Storyboard x:Key="End">
+                                            <DoubleAnimation Storyboard.TargetName="AnimIntroCanvas1" Storyboard.TargetProperty="Height" From="2160" To="2161" BeginTime="{DynamicResource IntroTimespan}" Duration="0:0:2"/>
+                                        </Storyboard>
+                                    </Canvas.Resources>
+                                    <Border Background="{DynamicResource UIBrush}" Width="1920" Height="1080"/>
+                                    <Border Background="{DynamicResource OverlayDynamicBackground}" Width="1920" Height="1080"/>
+                                    <Border Background="{DynamicResource OverlayTitle}" Width="1920" Height="1080"/>
+                                    <Grid x:Name="AnimIntroWave" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0">
+                                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                            <Image Stretch="UniformToFill" Source="../Images/WAVE.png" Width="5760" Height="1080" RenderOptions.BitmapScalingMode="LowQuality"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid x:Name="AnimIntroLogo" HorizontalAlignment="Center" VerticalAlignment="Center" Width="1920" Height="1080" Opacity="0">
+                                        <Border x:Name="AnimIntroBorder1" BorderThickness="5" BorderBrush="White" CornerRadius="250" Width="0" Height="0" Opacity="0"/>
+                                        <Border x:Name="AnimIntroBorder2" BorderThickness="5" BorderBrush="White" CornerRadius="250" Width="0" Height="0" Opacity="0"/>
+                                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Image Stretch="UniformToFill" Source="{ThemeFile 'Images/applogo_full.png'}" Width="128" Height="128"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Canvas.Triggers>
+                                        <EventTrigger RoutedEvent="Canvas.Loaded">
+                                            <BeginStoryboard x:Name="Intro1" Storyboard="{StaticResource Wave}"/>
+                                            <BeginStoryboard x:Name="Intro2" Storyboard="{StaticResource Logo}"/>
+                                            <BeginStoryboard x:Name="Intro3" Storyboard="{StaticResource Border1}"/>
+                                            <BeginStoryboard x:Name="Intro4" Storyboard="{StaticResource Border2}"/>
+                                            <BeginStoryboard x:Name="Intro5" Storyboard="{StaticResource End}"/>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="Canvas.SizeChanged">
+                                            <StopStoryboard BeginStoryboardName="Intro1"/>
+                                            <StopStoryboard BeginStoryboardName="Intro2"/>
+                                            <StopStoryboard BeginStoryboardName="Intro3"/>
+                                            <StopStoryboard BeginStoryboardName="Intro4"/>
+                                            <StopStoryboard BeginStoryboardName="Intro5"/>
+                                        </EventTrigger>
+                                    </Canvas.Triggers>
+                                </Canvas>
+                            </Viewbox>
+                        </Grid>
+
+                        <!--VIDEO INTRO-->
+                        <Grid x:Name="VideoIntro" Tag="{DynamicResource IntroVideo}">
+                            <Grid.Style>
+                                <Style>
+                                    <Setter Property="ItemsControl.Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true">
+                                            <Setter Property="ItemsControl.Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=IntroVideoSource,Path=Opacity}" Value="0">
+                                            <Setter Property="ItemsControl.Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <Border Background="Black">
+                                <Border.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=VideoIntro,Path=Visibility}" Value="Visible">
+                                                <DataTrigger.EnterActions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:3" Duration="0:0:0.5"/>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </DataTrigger.EnterActions>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                            </Border>
+                            <TextBlock Name="IntroVideoPath" Tag="{DynamicResource ExtraMetadataPath}" Visibility="Collapsed">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Text">
+                                            <Setter.Value>
+                                                <MultiBinding StringFormat="{}{0}{1}">
+                                                    <Binding RelativeSource="{RelativeSource Self}" Path="Tag" />
+                                                    <Binding Source="\ExtraMetadata\Themes\Fullscreen\XBOXSERIESish\IntroVideo.mp4"/>
+                                                </MultiBinding>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <MediaElement x:Name="IntroVideoSource" Tag="{DynamicResource UseAbsoluteExtraMetadataPath}">
+                                <MediaElement.Style>
+                                    <Style TargetType="MediaElement">
+                                        <Setter Property="MediaElement.Volume" Value="{DynamicResource IntroVideoVolume}"/>
+                                        <Setter Property="MediaElement.Source" Value="{Binding ElementName=IntroVideoPath, Path=Text}"/>
+                                        <Setter Property="ItemsControl.Opacity" Value="1"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=VideoIntro,Path=Visibility}" Value="Collapsed">
+                                                <Setter Property="MediaElement.Source" Value="" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                                                <Setter Property="MediaElement.Source" Value="" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=MAINContent,Path=MinHeight}" Value="0">
+                                                <Setter Property="MediaElement.Source" Value="" />
+                                            </DataTrigger>
+                                            <EventTrigger RoutedEvent="MediaElement.MediaEnded">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5" FillBehavior="HoldEnd"/>
+                                                        <DoubleAnimation Storyboard.TargetProperty="MaxHeight" From="2160" To="2161" Duration="0:0:0.01"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </MediaElement.Style>
+                            </MediaElement>
+                        </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

@@ -37,8 +37,10 @@
     <!--Trailers-->
     <sys:Boolean x:Key="Trailers">true</sys:Boolean>
 
-    <!--MainScreenLogo-->
-    <sys:Boolean x:Key="MainScreenLogo">false</sys:Boolean>
+    <!--DynamicBackground-->
+    <sys:Boolean x:Key="DynamicBackground">false</sys:Boolean>
+    <sys:Boolean x:Key="DynamicBackground_Columns">false</sys:Boolean>
+    <sys:Boolean x:Key="DynamicBackground_Wave">false</sys:Boolean>
 
     <Color x:Key="BlackColor">#FF000000</Color>
     <Color x:Key="WhiteColor">#FFFFFFFF</Color>

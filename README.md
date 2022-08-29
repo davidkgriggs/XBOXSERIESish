@@ -14,3 +14,7 @@ XBOXSERIESish is a Theme for Playnite that emulates the XBOX Series UI.
 See the Playnite Forum thread at: https://playnite.link/forum/thread-629.html
 
 Please support the Main Playnite Project: https://www.patreon.com/playnite
+
+![DownloadCountTotal](https://img.shields.io/github/downloads/davidkgriggs/XBOXSERIESish/total?label=total%20downloads&style=for-the-badge)
+![LatestVersion](https://img.shields.io/github/v/tag/davidkgriggs/XBOXSERIESish?label=Latest%20version&style=for-the-badge)
+![DownloadCountLatest](https://img.shields.io/github/downloads/davidkgriggs/XBOXSERIESish/latest/total?style=for-the-badge)

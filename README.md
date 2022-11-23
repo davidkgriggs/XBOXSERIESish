@@ -11,6 +11,12 @@ XBOXSERIESish is a Theme for Playnite that emulates the XBOX Series UI.
 ### Playnite Fullscreen Settings:
 ![](https://raw.githubusercontent.com/davidkgriggs/XBOXSERIESish/main/Media/screenshot_04.jpg)
 
+### Plugins Supported:
+* DKG Theme Modifier
+* Extra Metadata Loader
+* Extra Metadata Fullscreen Mode Helper
+* SuccessStory
+
 See the Playnite Forum thread at: https://playnite.link/forum/thread-629.html
 
 Please support the Main Playnite Project: https://www.patreon.com/playnite
